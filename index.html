@@ -2,519 +2,542 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RallyUp - LinkedIn Employee Advocacy Platform</title>
-    <meta name="description"
-        content="RallyUp empowers internal teams to boost engagement and amplify reach through exciting LinkedIn competitions. Drive participation, track progress, and foster a vibrant company culture.">
-    <link rel="icon"
-        href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/5d85d7b9d_Amplify_Icon_logo_mark_linkedin_optimized.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
-                    },
-                    colors: {
-                        'orange': {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            500: '#f97316',
-                            600: '#ea580c',
-                            800: '#9a3412'
-                        }
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RallyUp - LinkedIn Employee Advocacy Platform</title>
+  <meta name="description"
+    content="RallyUp empowers internal teams to boost engagement and amplify reach through exciting LinkedIn competitions. Drive participation, track progress, and foster a vibrant company culture.">
+  <link rel="icon"
+    href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/5d85d7b9d_Amplify_Icon_logo_mark_linkedin_optimized.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            'orange': {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              500: '#f97316',
+              600: '#ea580c',
+              800: '#9a3412'
             }
+          }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="font-sans bg-white">
-    <!-- Hero Section -->
-    <section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-16 lg:pt-12 lg:pb-24">
-        <div class="max-w-7xl mx-auto">
-            <!-- Logo -->
-            <div class="flex justify-center mb-6 lg:mb-8">
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/f5b4fa86e_Amplify_Icon_logo_mark_linkedin_optimized.png"
-                    alt="RallyUp Logo" class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl shadow-lg">
-            </div>
+  <!-- Announcement Banner -->
+  <div id="announcement-banner"
+    class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 px-4 relative cursor-pointer" onclick="goToQ4()">
+    <div class="max-w-7xl mx-auto flex items-center justify-between relative z-10">
+      <div class="flex-1 text-center">
+        <p class="text-sm sm:text-base font-medium">
+          🚀 90-Day LinkedIn Challenge. Limited to 25 Teams. Guaranteed Results.
+        </p>
+      </div>
+      <!-- Close button -->
+      <button onclick="closeBanner(event)"
+        class="text-white hover:bg-white/20 p-1 rounded-md transition-colors flex-shrink-0 ml-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 
-            <!-- Hero Content -->
-            <div class="text-center max-w-5xl mx-auto">
-                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-4 lg:mb-6 tracking-tight"
-                    style="line-height: 1.15;">
-                    RallyUp
-                </h1>
-                <p class="text-lg sm:text-xl lg:text-3xl text-gray-600 mb-6 lg:mb-8 max-w-4xl mx-auto px-2"
-                    style="line-height: 1.25;">
-                    Transform employee posts into your most powerful growth engine, one challenge at a time.
-                </p>
+  <!-- Hero Section -->
+  <section class="relative px-4 sm:px-6 lg:px-8 pt-6 pb-16 lg:pt-12 lg:pb-24">
+    <div class="max-w-7xl mx-auto">
+      <!-- Logo -->
+      <div class="flex justify-center mb-6 lg:mb-8">
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/f5b4fa86e_Amplify_Icon_logo_mark_linkedin_optimized.png"
+          alt="RallyUp Logo" class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl shadow-lg">
+      </div>
 
-                <!-- Email Capture -->
-                <div class="bg-orange-50 rounded-2xl p-6 border border-orange-100 mb-6 lg:mb-8">
-                    <p class="text-orange-800 font-medium text-lg mb-4">Limited spots. Join the private beta.</p>
-                    <div class="max-w-md mx-auto">
-                        <form name='join-beta' method='POST' data-netlify='true'
-                            class="flex flex-col sm:flex-row gap-2">
-                            <input type="email" name='name' placeholder="Work email" required
-                                class="flex w-full border border-gray-300 bg-white px-3 py-2 rounded-xl h-12 flex-grow text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                            <button type="submit"
-                                class="w-3/5 min-w-max bg-orange-500 hover:bg-orange-600 text-white py-3 text-base font-semibold rounded-xl h-12 transition-colors">
-                                Join Private Beta
-                            </button>
-                        </form>
-                    </div>
+      <!-- Hero Content -->
+      <div class="text-center max-w-5xl mx-auto">
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-4 lg:mb-6 tracking-tight"
+          style="line-height: 1.15;">
+          RallyUp
+        </h1>
+        <p class="text-lg sm:text-xl lg:text-3xl text-gray-600 mb-6 lg:mb-8 max-w-4xl mx-auto px-2"
+          style="line-height: 1.25;">
+          Transform employee posts into your most powerful growth engine, one challenge at a time.
+        </p>
 
-                </div>
-
-                <p data-source-location="pages/Home:89:14" data-dynamic-content="false"
-                    class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2"
-                    style="opacity: 1; transform: none;">Run company-wide LinkedIn competitions that 10x your
-                    brand's reach, drive massive growth, and attract top talent.</p>
-
-                <!-- Animated Divider -->
-                <div class="py-8 sm:py-12 flex justify-center items-center">
-                    <div class="flex items-center gap-3 sm:gap-4">
-                        <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
-                        <div class="flex gap-1.5 sm:gap-2">
-                            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                            <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                        </div>
-                        <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
-                    </div>
-                </div>
-
-                <!-- Statistics Section -->
-                <div class="max-w-6xl mx-auto my-8 lg:my-12">
-                    <div class="text-center mb-8 lg:mb-12">
-                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Why Employee Advocacy Works</h2>
-                        <p class="text-base lg:text-lg text-gray-600">The data speaks for itself</p>
-                    </div>
-
-                    <div class="grid gap-6 md:grid-cols-3 lg:gap-8">
-                        <div
-                            class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 to-blue-100">
-                            <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-4">76%</div>
-                            <p class="text-gray-800 font-medium mb-2 text-sm lg:text-base">of people trust employee
-                                posts</p>
-                            <p class="text-gray-600 text-xs lg:text-sm">over branded content</p>
-                        </div>
-                        <div
-                            class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-orange-50 to-orange-100">
-                            <div class="text-3xl lg:text-4xl font-bold text-orange-600 mb-4">8x</div>
-                            <p class="text-gray-800 font-medium mb-2 text-sm lg:text-base">more engagement</p>
-                            <p class="text-gray-600 text-xs lg:text-sm">from employee content vs brand content</p>
-                        </div>
-                        <div
-                            class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-green-50 to-green-100">
-                            <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-4">60%</div>
-                            <p class="text-gray-800 font-medium mb-2 text-sm lg:text-base">of job seekers research</p>
-                            <p class="text-gray-600 text-xs lg:text-sm">employers on social media</p>
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-6 lg:mt-8 px-4">
-                        <p class="text-xs lg:text-sm text-gray-500">
-                            Sources:
-                            <a href="https://www.speakap.com/insights/employee-advocacy-statistics" target="_blank"
-                                class="text-gray-700 hover:text-gray-900 underline">Speakap</a>,
-                            <a href="https://www.postbeyond.com/employee-generated-content/" target="_blank"
-                                class="text-gray-700 hover:text-gray-900 underline">PostBeyond</a>
-                        </p>
-                    </div>
-
-                    <!-- Creator Section -->
-                    <div class="flex flex-col items-center gap-4 mt-12">
-                        <a href="https://www.linkedin.com/in/aleckremins/" target="_blank"
-                            class="hover:opacity-80 transition-opacity duration-200">
-                            <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/a609f6775_alec.jpeg"
-                                alt="Alec Kremins" class="w-16 h-16 rounded-full shadow-lg border-2 border-white">
-                        </a>
-                        <p class="text-gray-500 text-lg max-w-2xl text-center">
-                            built by a former ramp & beehiiv operator • building in public with 2.5 million linkedin
-                            impressions in the past 90 days
-                        </p>
-                        <a href='https://calendar.app.google/jh8yNJnC4NFrQBn86' target="_blank"
-                            class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 mx-4 sm:mx-0 flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M8 2v4"></path>
-                                <path d="M16 2v4"></path>
-                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                                <path d="M3 10h18"></path>
-                            </svg>
-                            Book a Free Consultation
-                        </a>
-                        <div class="flex items-center justify-center gap-2 text-green-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
-                                </path>
-                                <path d="m9 12 2 2 4-4"></path>
-                            </svg>
-                            <span class="text-sm font-medium">Money-Back Guarantee</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Email Capture -->
+        <div class="bg-orange-50 rounded-2xl p-6 border border-orange-100 mb-6 lg:mb-8">
+          <p class="text-orange-800 font-medium text-lg mb-4">Limited spots. Join the private beta.</p>
+          <div class="max-w-md mx-auto">
+            <form name='join-beta' method='POST' data-netlify='true' class="flex flex-col sm:flex-row gap-2">
+              <input type="email" name='email' placeholder="Work email" required
+                class="flex w-full border border-gray-300 bg-white px-3 py-2 rounded-xl h-12 flex-grow text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+              <button type="submit"
+                class="w-2/3 bg-orange-500 hover:bg-orange-600 text-white py-3 text-base font-semibold rounded-xl h-12 transition-colors">
+                Join Private Beta
+              </button>
+            </form>
+          </div>
         </div>
-    </section>
 
-    <!-- Divider -->
-    <div class="py-8 sm:py-12 flex justify-center items-center">
-        <div class="flex items-center gap-3 sm:gap-4">
+        <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-2">
+          Run company-wide LinkedIn competitions that 10x your brand's reach, drive massive growth, and attract top
+          talent.
+        </p>
+
+        <!-- Animated Divider -->
+        <div class="py-8 sm:py-12 flex justify-center items-center">
+          <div class="flex items-center gap-3 sm:gap-4">
             <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
             <div class="flex gap-1.5 sm:gap-2">
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+              <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
             </div>
             <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
+          </div>
         </div>
-    </div>
 
-    <!-- Solution Section -->
-    <section class="px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 lg:mb-16">
-                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="text-green-600">
-                        <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
-                        <path d="m9 11 3 3L22 4"></path>
-                    </svg>
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">
-                    Solution: <span class="text-orange-500">RallyUp</span>
-                </h2>
+        <!-- Statistics Section -->
+        <div class="max-w-6xl mx-auto my-8 lg:my-12">
+          <div class="text-center mb-8 lg:mb-12">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Why Employee Advocacy Works</h2>
+            <p class="text-base lg:text-lg text-gray-600">The data speaks for itself</p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3 lg:gap-8">
+            <div
+              class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 to-blue-100">
+              <div class="text-3xl lg:text-4xl font-bold text-blue-600 mb-4">76%</div>
+              <p class="text-gray-800 font-medium mb-2 text-sm lg:text-base">of people trust employee posts</p>
+              <p class="text-gray-600 text-xs lg:text-sm">over branded content</p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-green-600">
-                            <path
-                                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
-                            </path>
-                            <path
-                                d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
-                            </path>
-                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
-                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Automated LinkedIn competitions</h3>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-green-600">
-                            <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                            <path d="M18 17V9"></path>
-                            <path d="M13 17V5"></path>
-                            <path d="M8 17v-3"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Instant performance tracking</h3>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-green-600">
-                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                            <path d="M4 22h16"></path>
-                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Built-in incentive engine</h3>
-                </div>
+            <div
+              class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-orange-50 to-orange-100">
+              <div class="text-3xl lg:text-4xl font-bold text-orange-600 mb-4">8x</div>
+              <p class="text-gray-800 font-medium mb-2 text-sm lg:text-base">more engagement</p>
+              <p class="text-gray-600 text-xs lg:text-sm">from employee content vs brand content</p>
             </div>
-
-            <div class="mt-12 lg:mt-16">
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/7957db782_Screenshot2025-08-13at113909.png"
-                    alt="RallyUp Dashboard Analytics"
-                    class="w-full h-auto rounded-2xl shadow-2xl border border-gray-200 max-w-4xl mx-auto">
+            <div
+              class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-green-50 to-green-100">
+              <div class="text-3xl lg:text-4xl font-bold text-green-600 mb-4">60%</div>
+              <p class="text-gray-800 font-medium mb-2 text-sm lg:text-base">of job seekers research</p>
+              <p class="text-gray-600 text-xs lg:text-sm">employers on social media</p>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Divider -->
-    <div class="py-8 sm:py-12 flex justify-center items-center">
-        <div class="flex items-center gap-3 sm:gap-4">
-            <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
-            <div class="flex gap-1.5 sm:gap-2">
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-            </div>
-            <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
-        </div>
-    </div>
-
-    <!-- Key Features Section -->
-    <section class="px-4 sm:px-6 lg:px-8 bg-gray-50 py-12 lg:py-16">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12 lg:mb-16">Key Features</h2>
-
-            <!-- Mobile Feature Cards -->
-            <div class="space-y-4 lg:hidden">
-                <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-semibold text-gray-900 mb-2">Auto-tracked Metrics</h3>
-                    <p class="text-gray-600 text-sm">Know who drives the most impact, instantly.</p>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-semibold text-gray-900 mb-2">Live Leaderboards</h3>
-                    <p class="text-gray-600 text-sm">Ignite friendly competition across teams.</p>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-semibold text-gray-900 mb-2">Custom Competitions</h3>
-                    <p class="text-gray-600 text-sm">Set weekly or monthly challenges easily.</p>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-semibold text-gray-900 mb-2">Incentive Engine</h3>
-                    <p class="text-gray-600 text-sm">Reward top performers with prizes or shoutouts.</p>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                    <h3 class="font-semibold text-gray-900 mb-2">Performance Insights</h3>
-                    <p class="text-gray-600 text-sm">Identify your highest-impact posts quickly.</p>
-                </div>
-            </div>
-
-            <!-- Desktop Feature Table -->
-            <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hidden lg:block">
-                <div class="grid md:grid-cols-2 bg-gray-100">
-                    <div class="p-6 font-semibold text-gray-900 border-r border-gray-200">Feature</div>
-                    <div class="p-6 font-semibold text-gray-900">Benefit</div>
-                </div>
-                <div class="grid md:grid-cols-2 border-t border-gray-200">
-                    <div class="p-6 text-gray-900 border-r border-gray-200">Auto-tracked Metrics</div>
-                    <div class="p-6 text-gray-600">Know who drives the most impact, instantly.</div>
-                </div>
-                <div class="grid md:grid-cols-2 border-t border-gray-200">
-                    <div class="p-6 text-gray-900 border-r border-gray-200">Live Leaderboards</div>
-                    <div class="p-6 text-gray-600">Ignite friendly competition across teams.</div>
-                </div>
-                <div class="grid md:grid-cols-2 border-t border-gray-200">
-                    <div class="p-6 text-gray-900 border-r border-gray-200">Custom Competitions</div>
-                    <div class="p-6 text-gray-600">Set weekly or monthly challenges easily.</div>
-                </div>
-                <div class="grid md:grid-cols-2 border-t border-gray-200">
-                    <div class="p-6 text-gray-900 border-r border-gray-200">Incentive Engine</div>
-                    <div class="p-6 text-gray-600">Reward top performers with prizes or shoutouts.</div>
-                </div>
-                <div class="grid md:grid-cols-2 border-t border-gray-200">
-                    <div class="p-6 text-gray-900 border-r border-gray-200">Performance Insights</div>
-                    <div class="p-6 text-gray-600">Identify your highest-impact posts quickly.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="py-8 sm:py-12 flex justify-center items-center">
-        <div class="flex items-center gap-3 sm:gap-4">
-            <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
-            <div class="flex gap-1.5 sm:gap-2">
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-            </div>
-            <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
-        </div>
-    </div>
-
-    <!-- The Real Value Section -->
-    <section class="px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 lg:mb-16">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="text-blue-600">
-                        <path
-                            d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-                        </path>
-                    </svg>
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">The Real Value</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-white">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Builds Culture</h3>
-                    <p class="text-gray-600">Rally turns posting into team building and pride.</p>
-                </div>
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-white">
-                            <path
-                                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Supercharges Recruiting</h3>
-                    <p class="text-gray-600">Authentic voices attract top talent.</p>
-                </div>
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-white">
-                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                            <polyline points="16 7 22 7 22 13"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">Drives Growth</h3>
-                    <p class="text-gray-600">Social proof builds trust and revenue.</p>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 lg:p-8 text-center">
-                <p class="text-white text-lg lg:text-xl font-semibold">
-                    Boost Culture + Recruiting + Growth + Unbeatable Advantage.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="py-8 sm:py-12 flex justify-center items-center">
-        <div class="flex items-center gap-3 sm:gap-4">
-            <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
-            <div class="flex gap-1.5 sm:gap-2">
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-                <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
-            </div>
-            <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
-        </div>
-    </div>
-
-    <!-- What You Can Expect Section -->
-    <section class="px-4 sm:px-6 lg:px-8 bg-gray-50 py-12 lg:py-16">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12 lg:mb-16">What You Can Expect</h2>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-orange-600">
-                            <path
-                                d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Weekly Momentum</h3>
-                    <p class="text-gray-600 text-sm lg:text-base">across the org</p>
-                </div>
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-orange-600">
-                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-                            <polyline points="16 7 22 7 22 13"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Measurable Reach</h3>
-                    <p class="text-gray-600 text-sm lg:text-base">& engagement</p>
-                </div>
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-orange-600">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Recruiting +</h3>
-                    <p class="text-gray-600 text-sm lg:text-base">employer brand lift</p>
-                </div>
-                <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
-                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-orange-600">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <circle cx="12" cy="12" r="6"></circle>
-                            <circle cx="12" cy="12" r="2"></circle>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Content Flywheel</h3>
-                    <p class="text-gray-600 text-sm lg:text-base">from real employees</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="bg-gray-900 py-12 lg:py-16">
-        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-8">ready to rally the team?</h2>
-            <a href='https://calendar.app.google/jh8yNJnC4NFrQBn86' target='_blank'
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-11 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 lg:px-8 lg:py-4 text-base lg:text-lg font-semibold rounded-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M8 2v4"></path>
-                    <path d="M16 2v4"></path>
-                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                    <path d="M3 10h18"></path>
-                </svg>
-                Book a Free Consultation
-            </a>
-            <p class="mt-8 text-gray-500">
-                Questions? Reach out to
-                <a href="mailto:alec@rallyup.team" class="text-orange-500 hover:text-orange-600">alec@rallyup.team</a>
+          <div class="text-center mt-6 lg:mt-8 px-4">
+            <p class="text-xs lg:text-sm text-gray-500">
+              Sources:
+              <a href="https://www.speakap.com/insights/employee-advocacy-statistics" target="_blank"
+                class="text-gray-700 hover:text-gray-900 underline">Speakap</a>,
+              <a href="https://www.postbeyond.com/employee-generated-content/" target="_blank"
+                class="text-gray-700 hover:text-gray-900 underline">PostBeyond</a>
             </p>
+          </div>
+
+          <!-- Creator Section -->
+          <div class="flex flex-col items-center gap-4 mt-12">
+            <a href="https://www.linkedin.com/in/aleckremins/" target="_blank"
+              class="hover:opacity-80 transition-opacity duration-200">
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/a609f6775_alec.jpeg"
+                alt="Alec Kremins" class="w-16 h-16 rounded-full shadow-lg border-2 border-white">
+            </a>
+            <p class="text-gray-500 text-lg max-w-2xl text-center">
+              built by a former ramp & beehiiv operator • building in public with 2.5 million linkedin impressions in
+              the past 90 days
+            </p>
+            <button
+              class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 mx-4 sm:mx-0 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+              </svg>
+              Book a Free Consultation
+            </button>
+            <div class="flex items-center justify-center gap-2 text-green-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                </path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+              <span class="text-sm font-medium">Money-Back Guarantee</span>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        const handleSubmit = event => {
-            event.preventDefault();
+  <!-- Divider -->
+  <div class="py-8 sm:py-12 flex justify-center items-center">
+    <div class="flex items-center gap-3 sm:gap-4">
+      <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
+      <div class="flex gap-1.5 sm:gap-2">
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+      </div>
+      <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
+    </div>
+  </div>
 
-            const myForm = event.target;
-            const formData = new FormData(myForm);
+  <!-- Solution Section -->
+  <section class="px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 lg:mb-16">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="text-green-600">
+            <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+            <path d="m9 11 3 3L22 4"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">
+          Solution: <span class="text-orange-500">RallyUp</span>
+        </h2>
+      </div>
 
-            fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
-            })
-                .then(() => {
-                    // Replace the form's parent container with the success message
-                    const successHTML = `
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-green-600">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
+              </path>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
+              </path>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Automated LinkedIn competitions</h3>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-green-600">
+              <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+              <path d="M18 17V9"></path>
+              <path d="M13 17V5"></path>
+              <path d="M8 17v-3"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Instant performance tracking</h3>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-green-600">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+              <path d="M4 22h16"></path>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Built-in incentive engine</h3>
+        </div>
+      </div>
+
+      <div class="mt-12 lg:mt-16">
+        <img
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/7957db782_Screenshot2025-08-13at113909.png"
+          alt="RallyUp Dashboard Analytics"
+          class="w-full h-auto rounded-2xl shadow-2xl border border-gray-200 max-w-4xl mx-auto">
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-8 sm:py-12 flex justify-center items-center">
+    <div class="flex items-center gap-3 sm:gap-4">
+      <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
+      <div class="flex gap-1.5 sm:gap-2">
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+      </div>
+      <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
+    </div>
+  </div>
+
+  <!-- Key Features Section -->
+  <section class="px-4 sm:px-6 lg:px-8 bg-gray-50 py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12 lg:mb-16">Key Features</h2>
+
+      <!-- Mobile Feature Cards -->
+      <div class="space-y-4 lg:hidden">
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-2">Auto-tracked Metrics</h3>
+          <p class="text-gray-600 text-sm">Know who drives the most impact, instantly.</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-2">Live Leaderboards</h3>
+          <p class="text-gray-600 text-sm">Ignite friendly competition across teams.</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-2">Custom Competitions</h3>
+          <p class="text-gray-600 text-sm">Set weekly or monthly challenges easily.</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-2">Incentive Engine</h3>
+          <p class="text-gray-600 text-sm">Reward top performers with prizes or shoutouts.</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+          <h3 class="font-semibold text-gray-900 mb-2">Performance Insights</h3>
+          <p class="text-gray-600 text-sm">Identify your highest-impact posts quickly.</p>
+        </div>
+      </div>
+
+      <!-- Desktop Feature Table -->
+      <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hidden lg:block">
+        <div class="grid md:grid-cols-2 bg-gray-100">
+          <div class="p-6 font-semibold text-gray-900 border-r border-gray-200">Feature</div>
+          <div class="p-6 font-semibold text-gray-900">Benefit</div>
+        </div>
+        <div class="grid md:grid-cols-2 border-t border-gray-200">
+          <div class="p-6 text-gray-900 border-r border-gray-200">Auto-tracked Metrics</div>
+          <div class="p-6 text-gray-600">Know who drives the most impact, instantly.</div>
+        </div>
+        <div class="grid md:grid-cols-2 border-t border-gray-200">
+          <div class="p-6 text-gray-900 border-r border-gray-200">Live Leaderboards</div>
+          <div class="p-6 text-gray-600">Ignite friendly competition across teams.</div>
+        </div>
+        <div class="grid md:grid-cols-2 border-t border-gray-200">
+          <div class="p-6 text-gray-900 border-r border-gray-200">Custom Competitions</div>
+          <div class="p-6 text-gray-600">Set weekly or monthly challenges easily.</div>
+        </div>
+        <div class="grid md:grid-cols-2 border-t border-gray-200">
+          <div class="p-6 text-gray-900 border-r border-gray-200">Incentive Engine</div>
+          <div class="p-6 text-gray-600">Reward top performers with prizes or shoutouts.</div>
+        </div>
+        <div class="grid md:grid-cols-2 border-t border-gray-200">
+          <div class="p-6 text-gray-900 border-r border-gray-200">Performance Insights</div>
+          <div class="p-6 text-gray-600">Identify your highest-impact posts quickly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-8 sm:py-12 flex justify-center items-center">
+    <div class="flex items-center gap-3 sm:gap-4">
+      <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
+      <div class="flex gap-1.5 sm:gap-2">
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+      </div>
+      <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
+    </div>
+  </div>
+
+  <!-- The Real Value Section -->
+  <section class="px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 lg:mb-16">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+            <path
+              d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+            </path>
+          </svg>
+        </div>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900">The Real Value</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Builds Culture</h3>
+          <p class="text-gray-600">Rally turns posting into team building and pride.</p>
+        </div>
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+              <path
+                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Supercharges Recruiting</h3>
+          <p class="text-gray-600">Authentic voices attract top talent.</p>
+        </div>
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+              <polyline points="16 7 22 7 22 13"></polyline>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Drives Growth</h3>
+          <p class="text-gray-600">Social proof builds trust and revenue.</p>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 lg:p-8 text-center">
+        <p class="text-white text-lg lg:text-xl font-semibold">
+          Boost Culture + Recruiting + Growth + Unbeatable Advantage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-8 sm:py-12 flex justify-center items-center">
+    <div class="flex items-center gap-3 sm:gap-4">
+      <div class="h-0.5 bg-gradient-to-r from-transparent to-orange-300" style="width: 60px;"></div>
+      <div class="flex gap-1.5 sm:gap-2">
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+        <div class="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500"></div>
+      </div>
+      <div class="h-0.5 bg-gradient-to-l from-transparent to-orange-300" style="width: 60px;"></div>
+    </div>
+  </div>
+
+  <!-- What You Can Expect Section -->
+  <section class="px-4 sm:px-6 lg:px-8 bg-gray-50 py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 text-center mb-12 lg:mb-16">What You Can Expect</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-orange-600">
+              <path
+                d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Weekly Momentum</h3>
+          <p class="text-gray-600 text-sm lg:text-base">across the org</p>
+        </div>
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-orange-600">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+              <polyline points="16 7 22 7 22 13"></polyline>
+            </svg>
+          </div>
+          <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Measurable Reach</h3>
+          <p class="text-gray-600 text-sm lg:text-base">& engagement</p>
+        </div>
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-orange-600">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Recruiting +</h3>
+          <p class="text-gray-600 text-sm lg:text-base">employer brand lift</p>
+        </div>
+        <div class="text-center p-6 lg:p-8 rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-orange-600">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3 class="text-lg lg:text-xl font-bold text-gray-900 mb-2">Content Flywheel</h3>
+          <p class="text-gray-600 text-sm lg:text-base">from real employees</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="bg-gray-900 py-12 lg:py-16">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-8">ready to rally the team?</h2>
+      <button
+        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 lg:px-8 lg:py-4 text-base lg:text-lg font-semibold rounded-2xl transition-colors flex items-center gap-2 mx-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 2v4"></path>
+          <path d="M16 2v4"></path>
+          <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+          <path d="M3 10h18"></path>
+        </svg>
+        Book a Free Consultation
+      </button>
+      <p class="mt-8 text-gray-500">
+        Questions? Reach out to
+        <a href="mailto:alec@rallyup.team" class="text-orange-500 hover:text-orange-600">alec@rallyup.team</a>
+      </p>
+    </div>
+  </section>
+
+  <script>
+
+    function goToQ4() {
+      window.location.href = "q4.html";
+    }
+
+    function closeBanner(event) {
+      event.stopPropagation(); // prevent triggering the click-to-redirect
+      document.getElementById("announcement-banner").style.display = "none";
+    }
+
+    const handleSubmit = event => {
+      event.preventDefault();
+
+      const myForm = event.target;
+      const formData = new FormData(myForm);
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then(() => {
+          // Replace the form's parent container with the success message
+          const successHTML = `
 <div data-source-location="components/EmailCaptureForm:31:6" data-dynamic-content="true" class="bg-white rounded-2xl p-6 border border-gray-200 max-w-md mx-auto text-center">
   <div class="flex items-center justify-center gap-3 mb-4">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big w-8 h-8 text-green-600"><path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path></svg>
@@ -529,19 +552,18 @@
 </div>
             `;
 
-                    // Find the container that holds the form
-                    const container = myForm.closest(".bg-orange-50");
-                    if (container) {
-                        container.innerHTML = successHTML;
-                    }
-                })
-                .catch(error => alert(error));
-        };
+          // Find the container that holds the form
+          const container = myForm.closest(".bg-orange-50");
+          if (container) {
+            container.innerHTML = successHTML;
+          }
+        })
+        .catch(error => alert(error));
+    };
 
 
-        document.querySelector("form").addEventListener("submit", handleSubmit);
-    </script>
-
+    document.querySelector("form").addEventListener("submit", handleSubmit);
+  </script>
 </body>
 
 </html>
