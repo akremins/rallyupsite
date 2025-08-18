@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RallyUp</title>
+  <!-- Tailwind CDN (no build step) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="RallyUp – 90‑day LinkedIn challenge that turns your team into a growth engine." />
+</head>
+
+<body class="min-h-full bg-[#F7F7F8] text-gray-800 antialiased">
+  <!-- Skip to content -->
+  <a href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[1000] rounded bg-blue-600 px-3 py-2 text-white">Skip
+    to main content</a>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full bg-[#F7F7F8]/80 backdrop-blur-sm border-b border-gray-200/80">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+
+        <a href='./index.html' class='flex items-center gap-3'>
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/85a744032_Amplify_Icon_logo_mark_linkedin_optimized.png"
+            alt="RallyUp logo" class="h-8 w-8 rounded-lg" />
+
+
+          <span class="text-xl font-bold text-gray-900">RallyUp</span>
+        </a>
+
+        <button onclick='openModal()'
+          class="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg">
+          Apply Now
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Modal (hidden by default) -->
+  <div id="lead-modal" class="fixed inset-0 z-50 hidden">
+    <!-- backdrop -->
+    <div class="absolute inset-0 bg-black/50" onclick="closeModal()"></div>
+
+    <!-- modal content -->
+    <div id="modal-content"
+      class="fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 border bg-white p-6 shadow-lg sm:rounded-lg sm:max-w-[425px]">
+
+      <!-- initial form content -->
+      <div id="form-view">
+        <div class="flex flex-col space-y-1.5 text-center sm:text-left">
+          <h2 class="tracking-tight text-2xl font-bold">Join the Challenge</h2>
+          <p class="text-sm text-gray-600">
+            Enter your work email to apply. Spots are limited and filling up fast.
+          </p>
+        </div>
+
+        <form name='join-challenge' method='POST' data-netlify='true' id="lead-form" class="space-y-4 py-4">
+          <input type="email" id="email" name='email' required placeholder="name@company.com"
+            class="flex w-full h-12 rounded-md border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <button type="submit"
+            class="inline-flex items-center justify-center gap-2 w-full h-12 text-lg font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white">
+            Continue
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 w-5 h-5">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- success view (hidden initially) -->
+      <div id="success-view" class="hidden flex flex-col items-center justify-center text-center py-8 space-y-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+          class="w-16 h-16 text-green-500">
+          <path d="M21.8 10A10 10 0 1 1 17 3.3" />
+          <path d="m9 11 3 3L22 4" />
+        </svg>
+        <div>
+          <h2 class="tracking-tight text-2xl font-bold">Thanks for Applying!</h2>
+          <p class="text-sm text-gray-600">
+            Your application is received. The final step is to book a quick intro call to secure your spot.
+          </p>
+        </div>
+        <a href="https://calendar.app.google/3DDDQru5hTzPTWFc6" target="_blank" rel="noopener noreferrer"
+          class="w-full">
+          <button
+            class="inline-flex items-center justify-center gap-2 w-full h-12 text-lg rounded-lg bg-green-600 hover:bg-green-700 text-white font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-4">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+            </svg>
+
+            Book a Call & Secure Your Spot
+          </button>
+        </a>
+        <p class="text-xs text-gray-500">You're one click away from transforming your team.</p>
+      </div>
+
+      <!-- Close button -->
+      <button type="button" onclick="closeModal()"
+        class="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+
+        <span class="sr-only">Close</span>
+      </button>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="relative bg-[#F7F7F8] py-20 md:py-32">
+      <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="mb-6 flex items-center justify-center gap-2">
+          <span
+            class="rounded-full border border-blue-200 bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-700">Q4
+            Challenge Open Now</span>
+        </div>
+        <h1 class="tracking-tighter text-gray-900 text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+          Explode Your Brand's Reach,<br />
+          Unlock <span class="text-blue-600">Inbound Sales</span>,<br />
+          and Recruit Top Talent
+        </h1>
+        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <button onclick='openModal()'
+            class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl sm:w-auto">
+            Apply to the Challenge
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-8 space-x-6 text-sm font-medium text-gray-500">
+          <span>✔ Cheaper Than An Intern</span>
+          <span>✔ Money-Back Guarantee</span>
+          <span>✔ Only 25 Spots</span>
+        </div>
+        <p class="mx-auto mt-6 max-w-3xl text-lg md:text-xl text-gray-600">
+          Our 90-day company-wide LinkedIn posting challenge transforms your team into a growth engine.
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-white py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="tracking-tighter text-4xl md:text-5xl font-extrabold text-gray-900">The Marketing Landscape Has
+            Shifted</h2>
+          <p class="mt-4 text-lg text-gray-600">Traditional advertising is failing. Your audience trusts authentic
+            voices, not brand accounts. The proof is in the data.</p>
+        </div>
+        <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Card 1 -->
+          <div class="rounded-2xl border border-gray-200/80 bg-[#F7F7F8] p-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-10 w-10 text-blue-600">
+              <path
+                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <div class="text-4xl font-bold tracking-tight text-gray-900">All-Time Low</div>
+            <p class="mt-2 text-gray-600">Trust in corporate brands</p>
+          </div>
+          <!-- Card 2 -->
+          <div class="rounded-2xl border border-gray-200/80 bg-[#F7F7F8] p-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-10 w-10 text-blue-600">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <div class="text-4xl font-bold tracking-tight text-gray-900">76% More Trust</div>
+            <p class="mt-2 text-gray-600">In posts from employees vs. brands</p>
+          </div>
+          <!-- Card 3 -->
+          <div class="rounded-2xl border border-gray-200/80 bg-[#F7F7F8] p-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-10 w-10 text-blue-600">
+              <polyline points="22 17 13.5 8.5 8.5 13.5 2 7" />
+              <polyline points="16 17 22 17 22 11" />
+            </svg>
+            <div class="text-4xl font-bold tracking-tight text-gray-900">8x Higher</div>
+            <p class="mt-2 text-gray-600">Engagement on employee content</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Credibility -->
+    <section class="bg-white py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid items-center gap-16 lg:grid-cols-2">
+          <div class="flex justify-center lg:justify-start">
+            <div class="relative">
+              <div class="absolute -left-4 -top-4 h-full w-full -rotate-3 rounded-2xl bg-blue-200"></div>
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/7281b0419_alec.jpeg"
+                alt="Founder Alec" class="relative h-80 w-80 rounded-2xl object-cover shadow-2xl" />
+            </div>
+          </div>
+          <div class="text-left">
+            <h2 class="tracking-tighter text-4xl md:text-5xl font-extrabold text-gray-900">A Proven Playbook from
+              Unicorns</h2>
+            <p class="mt-4 text-lg text-gray-600">I saw employee-led growth outperform paid ads on the growth teams at
+              <span class="font-semibold text-gray-800">Beehiiv</span> and <span
+                class="font-semibold text-gray-800">Ramp</span>. I started RallyUp to bring this powerful,
+              cost-effective strategy to more companies.
+            </p>
+            <div class="mt-8 rounded-xl border border-gray-200/80 bg-[#F7F7F8] p-6">
+              <p class="text-lg text-gray-600">My personal content alone generated over <span
+                  class="font-bold text-blue-600">3 Million impressions</span> in the last 90 days. We use the same
+                system for your team.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="bg-[#F7F7F8] py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="tracking-tighter text-4xl md:text-5xl font-extrabold text-gray-900">The #1 Marketing Channel You're
+            Ignoring</h2>
+          <p class="mt-4 text-lg text-gray-600">Stop burning cash on ads. Instead, empower your most valuable asset—your
+            people. We run an internal challenge that transforms your team's LinkedIn presence.</p>
+        </div>
+        <div class="mt-16 grid gap-8 md:grid-cols-3">
+          <!-- Card -->
+          <div class="rounded-2xl border border-gray-200/60 bg-white p-8 shadow-sm">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 text-blue-600">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                <path d="M4 22h16" />
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-gray-900">Gamify LinkedIn Posting</h3>
+            <p class="text-gray-600">We make it fun and competitive with leaderboards and challenges, turning posting
+              from a chore into a game.</p>
+          </div>
+          <!-- Card -->
+          <div class="rounded-2xl border border-gray-200/60 bg-white p-8 shadow-sm">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 text-blue-600">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-gray-900">Create Inbound Opportunities</h3>
+            <p class="text-gray-600">Consistent, authentic content from your team builds a snowball of inbound leads and
+              top-tier applicants.</p>
+          </div>
+          <!-- Card -->
+          <div class="rounded-2xl border border-gray-200/60 bg-white p-8 shadow-sm">
+            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7 text-blue-600">
+                <line x1="12" x2="12" y1="20" y2="10" />
+                <line x1="18" x2="18" y1="20" y2="4" />
+                <line x1="6" x2="6" y1="20" y2="16" />
+              </svg>
+            </div>
+            <h3 class="mb-2 text-xl font-bold text-gray-900">Deliver Measurable ROI</h3>
+            <p class="text-gray-600">See immediate, tangible impact on your brand's reach, engagement, and recruiting
+              pipeline within days.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="bg-white py-20 md:py-24 hidden sm:block">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="tracking-tighter text-4xl md:text-5xl font-extrabold text-gray-900">The Math is Simple</h2>
+          <p class="mt-4 text-lg text-gray-600">Compare the investment and impact. Employee advocacy isn't just another
+            channel—it's a category of its own.</p>
+        </div>
+        <div class="mt-12 overflow-x-auto">
+          <table class="w-full border-collapse text-left">
+            <thead>
+              <tr>
+                <th class="py-4 font-semibold text-gray-700">Feature</th>
+                <th class="py-4 text-center font-semibold text-blue-600">RallyUp Challenge</th>
+                <th class="py-4 text-center font-semibold text-gray-700">Paid Ads</th>
+                <th class="py-4 text-center font-semibold text-gray-700">Traditional PR</th>
+                <th class="py-4 text-center font-semibold text-gray-700">Do Nothing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-gray-200">
+                <td class="py-5 font-medium text-gray-900">Monthly Cost</td>
+                <td class="py-5 text-center font-semibold text-blue-600">
+                  <div class="flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-500">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg> $499+
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> $20,000+
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> $10,000+
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                      <path d="M12 9v4" />
+                      <path d="M12 17h.01" />
+                    </svg> Opportunity Cost
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-t border-gray-200">
+                <td class="py-5 font-medium text-gray-900">Time to Results</td>
+                <td class="py-5 text-center font-semibold text-blue-600">
+                  <div class="flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-500">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg> Days‑Weeks
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> Months
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> 6‑12 Months
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                      <path d="M12 9v4" />
+                      <path d="M12 17h.01" />
+                    </svg> Never
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-t border-gray-200">
+                <td class="py-5 font-medium text-gray-900">Authenticity &amp; Trust</td>
+                <td class="py-5 text-center font-semibold text-blue-600">
+                  <div class="flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-500">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg> Very High
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> Very Low
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> Medium
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                      <path d="M12 9v4" />
+                      <path d="M12 17h.01" />
+                    </svg> Decaying
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-t border-gray-200">
+                <td class="py-5 font-medium text-gray-900">Impact on Recruiting</td>
+                <td class="py-5 text-center font-semibold text-blue-600">
+                  <div class="flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-green-500">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg> Massive
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> None
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg> Some
+                  </div>
+                </td>
+                <td class="py-5 text-center text-gray-600">
+                  <div class="flex items-center justify-center gap-2 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                      <path d="M12 9v4" />
+                      <path d="M12 17h.01" />
+                    </svg> Negative
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="bg-[#F7F7F8] py-20 md:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="tracking-tighter text-4xl md:text-5xl font-extrabold text-gray-900">The Q4 LinkedIn Challenge</h2>
+          <p class="mt-4 text-lg text-gray-600">In 90 days, transform your team's LinkedIn presence into a powerful
+            growth engine. Choose the plan that fits your ambition.</p>
+        </div>
+        <div class="mx-auto mt-16 grid max-w-5xl gap-8 lg:grid-cols-2">
+          <!-- Starter -->
+          <article class="flex flex-col rounded-2xl border border-gray-200 bg-white p-8 text-gray-900">
+            <h3 class="text-xl font-bold">Starter</h3>
+            <p class="mt-2 text-gray-600">For teams ready to get started.</p>
+            <div class="my-8">
+              <span class="text-5xl font-extrabold tracking-tight">$499</span>
+              <span class="text-lg text-gray-500">/mo</span>
+            </div>
+            <ul class="mb-8 space-y-4">
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-green-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Full access to RallyUp platform</span></li>
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-green-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Kickoff guide &amp; manager playbook</span></li>
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-green-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>100+ swipeable LinkedIn post prompts</span></li>
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-green-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Gamification tools &amp; leaderboards</span></li>
+            </ul>
+            <div class="mt-auto">
+              <a id="apply" href="#contact"
+                class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-8 py-7 text-lg font-bold text-white transition hover:bg-gray-800">Apply
+                for Starter
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+            <div class="mt-6 rounded-lg bg-gray-100 p-4 text-center text-sm">
+              <p class="font-semibold">Enhanced Guarantee</p>
+              <p class="text-gray-600">30-day money-back guarantee PLUS a custom action plan if no ROI.</p>
+            </div>
+          </article>
+
+          <!-- Pro -->
+          <article class="relative flex flex-col rounded-2xl bg-gray-900 p-8 text-white shadow-2xl">
+            <div
+              class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1.5 text-sm font-semibold">
+              Most Popular</div>
+            <h3 class="text-xl font-bold">Pro</h3>
+            <p class="mt-2 text-gray-400">For teams who want maximum impact.</p>
+            <div class="my-8">
+              <span class="text-5xl font-extrabold tracking-tight">$2,499</span>
+              <span class="text-lg text-gray-400">/mo</span>
+            </div>
+            <ul class="mb-8 space-y-4">
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-blue-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Everything in Starter, plus:</span></li>
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-blue-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Private Slack group with founder access</span></li>
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-blue-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Live masterclass on converting posts to leads</span></li>
+              <li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="mt-1 h-5 w-5 flex-shrink-0 text-blue-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg><span>Executive spotlight sprint (4 weeks)</span></li>
+            </ul>
+            <div class="mt-auto">
+              <a href="#contact"
+                class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-8 py-7 text-lg font-bold text-white transition hover:bg-blue-700">Apply
+                for Pro
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+            <div class="mt-6 rounded-lg bg-white/10 p-4 text-center text-sm">
+              <p class="font-semibold">Ultimate Guarantee</p>
+              <p class="text-gray-300">Money back + we work for free until you see results.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (no JS – native details/summary) -->
+    <section class="py-20 md:py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tighter">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div class="mt-12 space-y-4">
+
+          <!-- FAQ item -->
+          <details class="group border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="w-full px-6 py-5 cursor-pointer list-none flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-gray-900 pr-4">
+                What if my employees don't want to post?
+              </h3>
+              <!-- Icons: show + by default, – when open -->
+              <span class="flex-shrink-0">
+                <!-- plus -->
+                <svg class="w-5 h-5 text-gray-500 group-open:hidden" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5v14" />
+                </svg>
+                <!-- minus -->
+                <svg class="w-5 h-5 text-gray-500 hidden group-open:block" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-0 border-t border-gray-200">
+              <p class="text-gray-600 leading-relaxed pt-4">
+                This is a common concern. Our program is designed to be fun and motivating. With gamification,
+                100+ proven prompts, and a live masterclass, we turn skeptics into advocates. No one gets left behind.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ item -->
+          <details class="group border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="w-full px-6 py-5 cursor-pointer list-none flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-gray-900 pr-4">
+                What does the 'money-back guarantee' include?
+              </h3>
+              <span class="flex-shrink-0">
+                <svg class="w-5 h-5 text-gray-500 group-open:hidden" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5v14" />
+                </svg>
+                <svg class="w-5 h-5 text-gray-500 hidden group-open:block" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-0 border-t border-gray-200">
+              <p class="text-gray-600 leading-relaxed pt-4">
+                30-day money-back guarantee. On top of that, we’ll craft a custom action plan if you don’t see ROI.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ item -->
+          <details class="group border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="w-full px-6 py-5 cursor-pointer list-none flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-gray-900 pr-4">
+                Is this just software, or a service?
+              </h3>
+              <span class="flex-shrink-0">
+                <svg class="w-5 h-5 text-gray-500 group-open:hidden" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5v14" />
+                </svg>
+                <svg class="w-5 h-5 text-gray-500 hidden group-open:block" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-0 border-t border-gray-200">
+              <p class="text-gray-600 leading-relaxed pt-4">
+                It’s software plus a guided challenge and playbooks—so you get tools and hands-on help.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ item -->
+          <details class="group border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="w-full px-6 py-5 cursor-pointer list-none flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-gray-900 pr-4">
+                Can we run this challenge privately?
+              </h3>
+              <span class="flex-shrink-0">
+                <svg class="w-5 h-5 text-gray-500 group-open:hidden" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M12 5v14" />
+                </svg>
+                <svg class="w-5 h-5 text-gray-500 hidden group-open:block" xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-5 pt-0 border-t border-gray-200">
+              <p class="text-gray-600 leading-relaxed pt-4">
+                Yes—everything can be run internally for your team only.
+              </p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="flex flex-col items-center justify-between space-y-8 md:flex-row md:space-y-0">
+        <div class="flex items-center gap-4">
+          <img
+            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/85a744032_Amplify_Icon_logo_mark_linkedin_optimized.png"
+            alt="RallyUp logo" class="h-10 w-10 rounded-lg" />
+          <span class="text-2xl font-bold text-gray-900">RallyUp</span>
+        </div>
+        <p class="text-center text-gray-500">© 2025 RallyUp. All rights reserved.</p>
+        <div class="flex space-x-6">
+          <a href="#" aria-label="Twitter" class="text-gray-400 transition hover:text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <path
+                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="text-gray-400 transition hover:text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const modal = document.getElementById("lead-modal");
+    const applyBtns = document.getElementsByClassName("apply-btn");
+    const form = document.getElementById("lead-form");
+    const formView = document.getElementById("form-view");
+    const successView = document.getElementById("success-view");
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      document.body.style.overflow = ""; // re-enable scrolling
+
+      // reset back to form view for next open
+      formView.classList.remove("hidden");
+      successView.classList.add("hidden");
+      form.reset();
+    }
+
+    function openModal() {
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden"; // disable scrolling
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const myForm = event.target;
+      const formData = new FormData(myForm);
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      }).then(() => {
+        // swap views
+        formView.classList.add("hidden");
+        successView.classList.remove("hidden");
+      })
+    });
+
+
+  </script>
+</body>
+
+</html>
