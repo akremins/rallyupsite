@@ -646,7 +646,7 @@
                 </svg><span>Weekly reporting dashboards</span></li>
             </ul>
             <div class="mt-auto">
-              <button onclick="openModal()"
+              <button onclick="proSubscribe()"
                 class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-8 py-7 text-lg font-bold text-white transition hover:bg-blue-700">Apply
                 for Pro
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -821,8 +821,8 @@
     const formView = document.getElementById("form-view");
     const successView = document.getElementById("success-view");
 
-    async function starterSubscribe(){
-          const response = await fetch('/.netlify/functions/stripe-payment', {
+    async function subscribe(plan){
+          const response = await fetch(`/.netlify/functions/stripe-payment?plan=${plan}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -830,10 +830,18 @@
             });
           const data = await response.json();
           if (data.url) {
-            window.open(data.url, '_blank');
+            window.location.href = data.url; // redirect to Stripe checkout
           } else {
             console.error('Error fetching Stripe URL:', data);  
           }
+    }
+
+    function starterSubscribe() {
+      subscribe('starter');
+    }
+
+    function proSubscribe() {
+      subscribe('pro');
     }
 
     function closeModal() {
