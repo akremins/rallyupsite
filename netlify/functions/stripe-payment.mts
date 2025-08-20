@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
 export default async (req: Request, context: Context) => {
     const plans = {
-        'starter': 'price_1RyC6KPufpxYYo1jz4NZiQNU',
+        'starter': "price_1RyHABPufpxYYo1jPYqVSYaE",
         'pro': 'price_1RyH8RPufpxYYo1jto1OVK0R'
     };
 
