@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 export default async (req: Request, context: Context) => {
     const plans = {
         'starter': 'price_1RyC6KPufpxYYo1jz4NZiQNU',
-        'pro': 'price_1RyC7TPufpxYYo1jY5pbjTfY'
+        'pro': 'price_1RyH8RPufpxYYo1jto1OVK0R'
     };
 
     const plan = new URL(req.url).searchParams.get("plan") ?? "starter";
