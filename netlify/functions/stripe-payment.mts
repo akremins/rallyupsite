@@ -45,7 +45,17 @@ export default async (req: Request, context: Context) => {
 
     } catch (error) {
         console.error("Error creating Stripe session:", error);
-        return new Response("Internal Server Error", { status: 500 });
+              return new Response(JSON.stringify({
+            error: "An error occurred while creating the Stripe session.",
+            details: error instanceof Error ? error.message : "Unknown error",
+            // Include the full error object for comprehensive debugging
+            fullError: JSON.parse(JSON.stringify(error))
+        }), {
+            status: 500,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
     }
 };
    
